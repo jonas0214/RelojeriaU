@@ -19,6 +19,6 @@ $app = Application::configure(basePath: dirname(__DIR__))
     })->create();
 
 // Si en Hostinger renombraste la carpeta "public" a "public_html", descomenta la siguiente línea:
-// $app->usePublicPath(dirname(__DIR__).'/public_html');
+$app->usePublicPath(dirname(__DIR__).'/public_html');
 
 return $app;
