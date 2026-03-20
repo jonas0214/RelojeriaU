@@ -8,4 +8,14 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: 'Cinzel', serif;
+    
+    --color-amber-light: #fef5e7;
+    --color-amber: #f39c12;
+    --color-amber-dark: #d35400;
+    --color-orange-vibrant: #e67e22;
+    
+    --color-brand-gray: #2c3e50;
+    --color-brand-light: #f8f9fa;
+    --color-brand-white: #ffffff;
 }
