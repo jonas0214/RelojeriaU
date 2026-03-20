@@ -78,13 +78,28 @@
                 background: white;
                 border: 1px solid #eee;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-                transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn-luxury::after {
+                content: '';
+                position: absolute;
+                top: 0; left: -100%;
+                width: 100%; height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.05), transparent);
+                transition: 0.5s;
+            }
+
+            .btn-luxury:hover::after {
+                left: 100%;
             }
 
             .btn-luxury:hover {
                 border-color: var(--brand-amber);
-                transform: translateY(-2px);
-                box-shadow: 0 10px 30px rgba(243, 156, 18, 0.08);
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 15px 35px rgba(243, 156, 18, 0.12);
             }
 
             .social-btn {
@@ -97,6 +112,7 @@
                 background: white;
                 border-color: var(--brand-amber);
                 color: var(--brand-amber);
+                transform: translateY(-2px);
             }
 
             .serif-title {
@@ -105,17 +121,38 @@
                 font-weight: 700;
             }
 
-            .amber-dot {
-                display: inline-block;
-                width: 4px;
-                height: 4px;
-                background: var(--brand-amber);
-                border-radius: 50%;
-                margin: 0 10px;
-                vertical-align: middle;
+            @keyframes amber-pulse {
+                0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
+                70% { box-shadow: 0 0 0 10px rgba(243, 156, 18, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
             }
 
-            /* Minimalist Logo Recreation */
+            .pulse-icon {
+                animation: amber-pulse 2s infinite;
+                border-radius: 50%;
+            }
+
+            /* Staggered Content Reveal */
+            .reveal-item {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: revealFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            }
+
+            @keyframes revealFadeIn {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .delay-1 { animation-delay: 0.1s; }
+            .delay-2 { animation-delay: 0.2s; }
+            .delay-3 { animation-delay: 0.3s; }
+            .delay-4 { animation-delay: 0.4s; }
+            .delay-5 { animation-delay: 0.5s; }
+            .delay-6 { animation-delay: 0.6s; }
+
             .logo-eye {
                 width: 70px;
                 height: 40px;
@@ -150,16 +187,6 @@
                 border-bottom: 2px solid var(--brand-amber);
                 rotate: -45deg;
             }
-
-            .animate-fade-in {
-                animation: fadeIn 0.8s ease-out forwards;
-                opacity: 0;
-            }
-
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
         </style>
     </head>
     <body class="antialiased">
@@ -169,25 +196,20 @@
         <div class="max-w-md mx-auto px-7 py-16 min-h-screen flex flex-col items-stretch">
             
             <!-- Branding -->
-            <header class="text-center mb-16 animate-fade-in" style="animation-delay: 0.1s">
+            <header class="text-center mb-16 reveal-item delay-1">
                 <div class="logo-eye">
                     <div class="logo-tick"></div>
                 </div>
                 <h1 class="serif-title text-2xl uppercase mb-3 text-brand-gray">Relojería Universal</h1>
                 <p class="text-[10px] uppercase tracking-[0.4em] text-gray-400 font-medium">Tu tiempo en las mejores manos</p>
-                <div class="mt-6 flex items-center justify-center">
-                    <div class="h-[1px] w-8 bg-gray-100"></div>
-                    <div class="amber-dot"></div>
-                    <div class="h-[1px] w-8 bg-gray-100"></div>
-                </div>
             </header>
 
             <!-- Links Content -->
-            <main class="space-y-12">
+            <main class="space-y-14 flex-grow">
                 
                 <!-- Section 1: Contact -->
-                <div class="space-y-4 animate-fade-in" style="animation-delay: 0.3s">
-                    <a href="https://wa.me/573001169576" target="_blank" class="btn-luxury p-6 rounded-2xl flex items-center justify-between group">
+                <div class="space-y-4">
+                    <a href="https://wa.me/573001169576" target="_blank" class="btn-luxury p-6 rounded-2xl flex items-center justify-between group reveal-item delay-2">
                         <div class="flex items-center space-x-5">
                             <div class="text-brand-amber">
                                 <i class="fab fa-whatsapp text-2xl"></i>
@@ -202,7 +224,7 @@
                         </div>
                     </a>
 
-                    <a href="https://wa.me/573155517641" target="_blank" class="btn-luxury p-6 rounded-2xl flex items-center justify-between group">
+                    <a href="https://wa.me/573155517641" target="_blank" class="btn-luxury p-6 rounded-2xl flex items-center justify-between group reveal-item delay-3">
                         <div class="flex items-center space-x-5">
                             <div class="text-brand-amber">
                                 <i class="fas fa-toolbox text-xl"></i>
@@ -216,10 +238,26 @@
                             <i class="fas fa-arrow-right text-[10px]"></i>
                         </div>
                     </a>
+
+                    <a href="#" target="_blank" class="btn-luxury p-6 rounded-2xl flex items-center justify-between group reveal-item delay-4">
+                        <div class="flex items-center space-x-5">
+                            <div class="text-brand-amber relative">
+                                <i class="fas fa-location-dot text-xl"></i>
+                                <div class="absolute inset-0 bg-brand-amber/20 pulse-icon"></div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-sm tracking-tight text-gray-800">Ubicación del Local</h3>
+                                <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-0.5">Visítanos en Cali</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-brand-amber group-hover:text-white transition-all">
+                            <i class="fas fa-map text-[10px]"></i>
+                        </div>
+                    </a>
                 </div>
 
                 <!-- Section 2: Social Discovery -->
-                <div class="grid grid-cols-3 gap-3 animate-fade-in" style="animation-delay: 0.5s">
+                <div class="grid grid-cols-3 gap-3 reveal-item delay-5">
                     <a href="https://www.instagram.com/relojeriauniversalur/" target="_blank" class="social-btn py-5 rounded-2xl flex flex-col items-center justify-center space-y-2">
                         <i class="fab fa-instagram text-lg"></i>
                         <span class="text-[9px] font-bold uppercase tracking-tight">Instagram</span>
@@ -235,7 +273,7 @@
                 </div>
 
                 <!-- Expertise Banner -->
-                <div class="text-center py-4 animate-fade-in" style="animation-delay: 0.7s">
+                <div class="text-center py-4 reveal-item delay-6">
                     <p class="text-[11px] font-serif text-gray-400 italic tracking-wide max-w-[250px] mx-auto leading-relaxed">
                         "El repuesto exacto hace la diferencia. Excelencia técnica en cada detalle."
                     </p>
